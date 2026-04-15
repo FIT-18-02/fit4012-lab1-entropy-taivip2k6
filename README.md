@@ -4,28 +4,103 @@
 
 ## Mục tiêu bài lab
 Sau khi hoàn thành bài này, sinh viên có thể:
-- Đọc hiểu và chạy được chương trình tính entropy của một chuỗi ký tự.
-- Bổ sung chức năng tính độ dư thừa thông tin dựa trên entropy thực tế.
-- Cài đặt hàm tìm nghịch đảo modulo bằng thuật toán Euclid mở rộng.
-- Tổ chức, kiểm thử và nộp bài bằng GitHub repo.
+- Tính entropy của một chuỗi ký tự
+- Tính redundancy (độ dư thừa thông tin)
+- Cài đặt nghịch đảo modulo (modular inverse)
+- Sử dụng GitHub để quản lý và nộp bài
+
+---
 
 ## Cấu trúc repo
 - `src/entropy_redundancy.cpp`: Q1, Q2
 - `src/mod_inverse.cpp`: Q3
-- `tests/test_cases.md`: test cases tối thiểu
+- `tests/test_cases.md`: test cases
 - `logs/run_log.md`: log chạy chương trình
-- `report-page.md`: báo cáo 1 trang
+- `report-page.md`: báo cáo
 
-## Yêu cầu nộp bài
-Hoàn thiện repo và nộp link GitHub. Repo cần có:
-- `README.md`
-- `report-1page.md`
-- `tests/` với ít nhất 5 test cases
-- `logs/` có kết quả chạy thử
-- mã nguồn hoàn thiện cho Q1, Q2, Q3
+---
+## Nội dung chính
 
-## Gợi ý commit
-- `Complete Q1 entropy walkthrough`
-- `Implement redundancy calculation`
-- `Implement modular inverse with extended Euclid`
-- `Add tests and report`
+### 1. Entropy
+Công thức:
+
+H = -∑ p(x) log2 p(x)
+
+
+### 2. Redundancy
+
+R = 1 - (H / Hmax)
+
+
+Trong đó:
+- H: entropy thực tế
+- Hmax = log2(n), với n là số ký tự khác nhau
+
+---
+
+### 3. Modular Inverse
+Tìm x sao cho:
+
+a × x ≡ 1 (mod m)
+
+
+Điều kiện tồn tại:
+
+gcd(a, m) = 1
+
+
+Sử dụng thuật toán Euclid mở rộng
+
+---
+
+## Test cases
+Xem tại:
+
+tests/test_cases.md
+
+
+Bao gồm:
+- Entropy: aaaa, abcd, hello world
+- Modulo inverse: (3,7), (10,17), (6,9)
+
+---
+
+## Cách chạy
+
+### Compile
+
+g++ -std=c++17 src/entropy_redundancy.cpp -o entropy
+g++ -std=c++17 src/mod_inverse.cpp -o modinv
+
+
+### Run
+
+./entropy
+./modinv
+
+
+---
+
+## Kết quả
+- Entropy tính đúng
+- Redundancy phản ánh mức độ lặp
+- Modular inverse:
+  - (3,7) → 5
+  - (10,17) → 12
+  - (6,9) → không tồn tại
+
+---
+
+## Báo cáo
+Xem file:
+
+report-page.md
+
+
+---
+
+## Kết luận
+- Hiểu entropy và redundancy
+- Biết tính modular inverse
+- Làm quen quy trình làm việc với GitHub
+
