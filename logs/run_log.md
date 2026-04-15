@@ -1,22 +1,23 @@
-# Run Log – FIT4012 Lab 1
+#include <iostream>
+#include <map>
+#include <cmath>
+using namespace std;
 
-Test 1: aaaa
-Entropy: 0.000
-Redundancy: 1.000
+double calculate_entropy(const string &s) {
+    map<char, int> freq;
+    for (char c : s) freq[c]++;
 
-Test 2: abcd
-Entropy: 2.000
-Redundancy: 0.000
+    double H = 0.0;
+    int n = s.length();
 
-Test 3: hello world
-Entropy: 2.846
-Redundancy: 0.051
+    for (auto &p : freq) {
+        double prob = (double)p.second / n;
+        H -= prob * log2(prob);
+    }
+    return H;
+}
 
-Test 4: 3 7
-Output: 5
-
-Test 5: 10 17
-Output: 12
-
-Test 6: 6 9
-Output: Not exist
+double calculate_redundancy(double H, int unique_chars) {
+    double Hmax = log2(unique_chars);
+    return 1.0 - (H / Hmax);
+}
