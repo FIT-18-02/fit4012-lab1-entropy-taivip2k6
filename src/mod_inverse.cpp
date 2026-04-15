@@ -21,17 +21,3 @@ int mod_inverse(int a, int m) {
     if (g != 1) return -1;
     return (x % m + m) % m;
 }
-
-int main() {
-    int a, m;
-    cin >> a >> m;
-
-    int res = mod_inverse(a, m);
-
-    if (res == -1)
-        cout << "Not exist";
-    else
-        cout << res;
-
-    return 0;
-}
