@@ -3,16 +3,16 @@
 ## Entropy / Redundancy
 
 ### Test 1: aaaa
-Entropy: 0  
-Redundancy: 1  
+Entropy: 0.000  
+Redundancy: 1.000  
 
 ### Test 2: abcd
-Entropy: 2  
-Redundancy: 0  
+Entropy: 2.000  
+Redundancy: 0.000  
 
 ### Test 3: hello world
-Entropy: 2.85  
-Redundancy: 0.05  
+Entropy: 2.846  
+Redundancy: 0.051  
 
 ## Modulo inverse
 
@@ -26,6 +26,6 @@ Output: 12
 Output: Not exist  
 
 ## Điều em học được từ bài lab
-Bài lab giúp em hiểu cách tính entropy để đo lượng thông tin của dữ liệu và cách xác định độ dư thừa (redundancy). 
-Em cũng học được cách sử dụng thuật toán Euclid mở rộng để tìm nghịch đảo modulo. 
-Ngoài ra, em làm quen với việc chạy test và quản lý code bằng GitHub.
+Bài lab giúp em hiểu cách tính entropy để đo lượng thông tin của dữ liệu và cách xác định độ dư thừa (redundancy).
+Em cũng học được cách sử dụng thuật toán Euclid mở rộng để tìm nghịch đảo modulo.
+Ngoài ra, em làm quen với việc kiểm thử chương trình và sử dụng GitHub để quản lý bài làm.
