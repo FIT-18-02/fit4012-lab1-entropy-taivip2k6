@@ -24,11 +24,13 @@ double calculate_redundancy(double H, int unique_chars) {
 
 int main() {
     string s;
-    cin >> s;
+    getline(cin, s);
+
+    map<char, int> freq;
+    for (char c : s) freq[c]++;
+    int unique_chars = freq.size();
 
     double H = calculate_entropy(s);
-    int unique_chars = map<char,int>(s.begin(), s.end()).size();
-
     double R = calculate_redundancy(H, unique_chars);
 
     cout << "Entropy: " << H << endl;
