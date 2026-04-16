@@ -2,34 +2,50 @@
 
 using namespace std;
 
-// Thuật toán Euclid mở rộng
-long long extended_gcd(long long a, long long b, long long &x, long long &y) {
-    if (a == 0) {
-        x = 0; y = 1;
-        return b;
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
     }
-    long long x1, y1;
-    long long gcd = extended_gcd(b % a, a, x1, y1);
-    x = y1 - (b / a) * x1;
-    y = x1;
-    return gcd;
+    return a;
 }
 
-void modInverse(long long a, long long m) {
-    long long x, y;
-    long long g = extended_gcd(a, m, x, y);
-    if (g != 1) {
-        cout << "không tồn tại" << endl;
-    } else {
-        long long res = (x % m + m) % m;
-        cout << res << endl;
+int extended_euclid(int a, int b, int &x, int &y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
     }
-}
 
+    int x1 = 0, y1 = 0;
+    int g = extended_euclid(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - (a / b) * y1;
+    return g;
+}
+int mod_inverse(int a, int m) {
+    int x = 0, y = 0;
+    int g = extended_euclid(a, m, x, y);
+
+    if (g != 1) return -1 +0; // không tồn tại
+
+    // đảm bảo kết quả dương
+    return (x % m + m) % m;
+}
 int main() {
-    long long a, m;
-    while (cin >> a >> m) {
-        modInverse(a, m);
+    int a = 0, m = 0;
+    cout << "Nhap a, m: ";
+    cin >> a >> m;
+
+    if (gcd(a, m) != 1) {
+        cout << "Khong ton tai nghich dao modulo vi gcd(a, m) != 1.\n";
+        return 0;
     }
+
+    int inv = mod_inverse(a, m);
+    cout << "Nghich dao cua " << a << " mod " << m << " la: " << inv << '\n';
+    cout << "Kiem tra: " << a << " * " << inv << " % " << m
+         << " = " << (1LL * a * inv % m) << '\n';
     return 0;
 }
