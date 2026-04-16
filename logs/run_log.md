@@ -1,12 +1,14 @@
 # Run Log – FIT4012 Lab 1
 
-- [x] Test 1: aaaa → Entropy: 0.000, Redundancy: 1.000
-- [x] Test 2: abcd → Entropy: 2.000, Redundancy: 0.000
-- [x] Test 3: hello world → Entropy: 2.846, Redundancy: 0.051
-- [x] Test 4: 3 7 → Output: 5
-- [x] Test 5: 10 17 → Output: 12
-- [x] Test 6: 6 9 → Output: Not exist
+## Entropy / Redundancy
+- [x] Đã chạy với input `aaaa`
+- [x] Đã chạy với input `abcd`
+- [x] Đã chạy với input `hello world`
+
+## Modulo inverse
+- [x] Đã chạy với `3 7`
+- [x] Đã chạy với `10 17`
+- [x] Đã chạy với `6 9`
 
 ## Điều em học được từ bài lab
-Bài lab giúp em hiểu entropy, redundancy và cách tính modular inverse bằng Euclid mở rộng.
-Em cũng học cách dùng GitHub để quản lý và nộp bài.
+Viết 3-5 dòng ngắn gọn ở đây.
