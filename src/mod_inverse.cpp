@@ -1,51 +1,47 @@
+#include <cmath>
 #include <iostream>
-
+#include <map>
+#include <unordered_set>
+#include <string>
 using namespace std;
 
-int gcd(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
+double calculate_entropy(const string &text) {
+    if (text.empty()) {
+        return 0.0;
     }
-    return a;
-}
-
-int extended_euclid(int a, int b, int &x, int &y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
+    map<char, int> freq;
+    for (char c : text) {
+        freq[c]++;
     }
-
-    int x1 = 0, y1 = 0;
-    int g = extended_euclid(b, a % b, x1, y1);
-    x = y1;
-    y = x1 - (a / b) * y1;
-    return g;
+    double entropy = 0.0;
+    for (const auto &pair : freq) {
+        double p = static_cast<double>(pair.second) / text.size();
+        entropy -= p * log2(p);
+    }
+    return entropy;
 }
-int mod_inverse(int a, int m) {
-    int x = 0, y = 0;
-    int g = extended_euclid(a, m, x, y);
 
-    if (g != 1) return -1 +0; // không tồn tại
-
-    // đảm bảo kết quả dương
-    return (x % m + m) % m;
+double calculate_redundancy(const string &text, int alphabet_size = 256) {
+    double entropy = calculate_entropy(text);
+    return log2(alphabet_size) - entropy;
 }
+
 int main() {
-    int a = 0, m = 0;
-    cout << "Nhap a, m: ";
-    cin >> a >> m;
+    string s1 = "aaaaaa";
+    string s2 = "abcabc";
+    string s3 = "hello123";
 
-    if (gcd(a, m) != 1) {
-        cout << "Khong ton tai nghich dao modulo vi gcd(a, m) != 1.\n";
-        return 0;
-    }
+    cout << "String 1: " << s1 << endl;
+    cout << "Entropy: " << calculate_entropy(s1) << endl;
+    cout << "Redundancy: " << calculate_redundancy(s1) << endl << endl;
 
-    int inv = mod_inverse(a, m);
-    cout << "Nghich dao cua " << a << " mod " << m << " la: " << inv << '\n';
-    cout << "Kiem tra: " << a << " * " << inv << " % " << m
-         << " = " << (1LL * a * inv % m) << '\n';
+    cout << "String 2: " << s2 << endl;
+    cout << "Entropy: " << calculate_entropy(s2) << endl;
+    cout << "Redundancy: " << calculate_redundancy(s2) << endl << endl;
+
+    cout << "String 3: " << s3 << endl;
+    cout << "Entropy: " << calculate_entropy(s3) << endl;
+    cout << "Redundancy: " << calculate_redundancy(s3) << endl;
+
     return 0;
-}
+}          // ← thêm dấu } này
