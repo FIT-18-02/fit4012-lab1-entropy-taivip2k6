@@ -1,33 +1,35 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 01 - Cấu trúc và Nội dung</title>
-</head>
-<body>
-    <header>
-        <h1>Chào mừng đến với trang web của tôi</h1>
-    </header>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <cmath>
+#include <iomanip>
 
-    <main>
-        <section>
-            <h2>Giới thiệu bản thân</h2>
-            <p>Đây là nội dung bài Lab 01 về cấu trúc HTML cơ bản.</p>
-        </section>
+using namespace std;
 
-        <section>
-            <h2>Sở thích của tôi</h2>
-            <ul>
-                <li>Lập trình</li>
-                <li>Đọc sách</li>
-                <li>Du lịch</li>
-            </ul>
-        </section>
-    </main>
+void solve() {
+    string s;
+    getline(cin, s);
+    if (s.empty()) return;
 
-    <footer>
-        <p>&copy; 2026 Bản quyền thuộc về tôi</p>
-    </footer>
-</body>
-</html>
+    map<char, int> freq;
+    for (char c : s) freq[c]++;
+
+    double entropy = 0;
+    int n = s.length();
+    for (auto const& [ch, count] : freq) {
+        double p = (double)count / n;
+        entropy -= p * log2(p);
+    }
+
+    double h_max = log2(freq.size());
+    double redundancy = (h_max > 0) ? (1 - (entropy / h_max)) : 0;
+
+    cout << fixed << setprecision(4) << "Entropy: " << entropy << endl;
+    cout << fixed << setprecision(4) << "Redundancy: " << redundancy << endl;
+}
+
+int main() {
+    solve();
+    return 0;
+}
